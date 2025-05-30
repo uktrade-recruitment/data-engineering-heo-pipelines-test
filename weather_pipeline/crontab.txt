@@ -1,0 +1,1 @@
+0 3 * * * cd weather_pipeline && /usr/bin/python3 src/main.py >> logs/cron.log 2>&1
