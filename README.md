@@ -1,26 +1,31 @@
-TODO - make this actually good
+# Weather Pipeline Technical Test
 
-You'll probably need to run
-chmod +x init-airflow.sh
+## Getting Started
 
-And then run
-docker-compose down
-docker-compose up --build
+This technical test involves working with a Python-based ETL pipeline that processes weather data.
 
+### Prerequisites
 
-or you can use make commands tbc need to do this properly.....
+- Docker installed on your system
+- Run the docker build command (step 1)
 
-you should be able to login with
-airflow and airflow as username and password
+### Running the Test Environment
 
-but this wasnt working for me so I did
-docker-compose exec airflow-webserver bash
+1. Build the Docker image:
+docker build -t weather-pipeline-test .
 
-then from container bash shell
-airflow users create \
-    --username admin \
-    --password admin \
-    --firstname Admin \
-    --lastname User \
-    --role Admin \
-    --email admin@example.com
+2. Run the container:
+docker run -it weather-pipeline-test
+
+3. The test environment will:
+   - Run the pipeline with sample data
+   - Execute the existing tests
+   - Provide you with a shell to work on the tasks
+
+4. Complete the tasks outlined in the test instructions below, using the shell provided in the container.
+
+5. To re-run the pipeline after making changes:
+python src/main.py
+
+6. To re-run the tests:
+python -m unittest discover -s tests

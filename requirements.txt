@@ -1,6 +1,0 @@
-apache-airflow==2.10.2
-apache-airflow-providers-postgres==5.13.1
-apache-airflow-providers-celery==3.7.3
-apache-airflow-providers-http==4.13.0
-redis==5.0.8
-psycopg2-binary==2.9.9
