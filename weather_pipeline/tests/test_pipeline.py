@@ -18,7 +18,7 @@ class TestWeatherPipeline(unittest.TestCase):
             {
                 'station_id': 'STN001',
                 'station_name': 'London',
-                'timestamp': '2023-01-01 12:00:00',
+                'timestamp': '2025-01-01 12:00:00',
                 'temperature': '20.0',  # Fahrenheit - should convert to Celsius
                 'humidity': '75.5',
                 'wind_speed': '10.3',
@@ -27,7 +27,7 @@ class TestWeatherPipeline(unittest.TestCase):
             {
                 'station_id': 'STN002',
                 'station_name': 'Manchester',
-                'timestamp': '2023-01-01 12:00:00',
+                'timestamp': '2025-01-01 12:00:00',
                 'temperature': '20.0',  # Fahrenheit - should convert to Celsius
                 'humidity': '80.0',
                 'wind_speed': '5.5',
@@ -37,17 +37,17 @@ class TestWeatherPipeline(unittest.TestCase):
 
     def test_transform_weather_data(self):
         """Test that transformation converts temperature correctly."""
-        transformed = transform_weather_data(self.sample_data)
+        self.sample_data[0]['temperature'] = '68.0'  # 68.0°F -> 20.0°C
+        self.sample_data[1]['temperature'] = '59.0'  # 59.0°F -> 15.0°C
 
+        transformed = transform_weather_data(self.sample_data)
         self.assertEqual(len(transformed), 2)
 
-        # London temp: (68.0 - 32) * 5/9 = 20.0°C
+        # (68.0 - 32) * 5/9 = 20.0°C
         self.assertAlmostEqual(transformed[0]['temperature'], 20.0)
-
-        # Manchester temp: (59.0 - 32) * 5/9 = 15.0°C
+        # (59.0 - 32) * 5/9 = 15.0°C
         self.assertAlmostEqual(transformed[1]['temperature'], 15.0)
 
-        # Check station name is uppercase
         self.assertEqual(transformed[0]['station_name'], 'LONDON')
 
     def test_validation(self):
@@ -57,8 +57,8 @@ class TestWeatherPipeline(unittest.TestCase):
             {
                 'station_id': 'STN001',
                 'station_name': 'LONDON',
-                'timestamp': '2023-01-01T12:00:00',
-                'date': '2023-01-01',
+                'timestamp': '2025-01-01T12:00:00',
+                'date': '2025-01-01',
                 'temperature': 20.0,
                 'humidity': 75.5,
                 'wind_speed': 10.3,
@@ -71,8 +71,8 @@ class TestWeatherPipeline(unittest.TestCase):
             {
                 'station_id': 'STN002',
                 'station_name': 'MANCHESTER',
-                'timestamp': '2023-01-01T12:00:00',
-                'date': '2023-01-01',
+                'timestamp': '2025-01-01T12:00:00',
+                'date': '2025-01-01',
                 'temperature': 120.0,  # Invalid temperature
                 'humidity': 75.5,
                 'wind_speed': 10.3,

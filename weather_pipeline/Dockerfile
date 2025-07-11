@@ -20,8 +20,8 @@ COPY . .
 RUN mkdir -p data/input data/output logs
 
 RUN echo "station_id,station_name,timestamp,temperature,humidity,wind_speed,precipitation\n\
-STN001,London,2023-01-01 12:00:00,68.0,75.5,10.3,0.5\n\
-STN002,Manchester,2023-01-01 12:00:00,59.0,80.0,5.5,1.2" > data/input/weather_2023-01-01.csv
+STN001,London,2025-01-01 12:00:00,68.0,75.5,10.3,0.5\n\
+STN002,Manchester,2025-01-01 12:00:00,59.0,80.0,5.5,1.2" > data/input/weather_2025-01-01.csv
 
 RUN chmod -R 777 logs
 
@@ -33,5 +33,3 @@ RUN echo '#!/bin/bash\necho "Running weather pipeline test..."\npython -m src.ma
     chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-
-CMD ["bash"]

@@ -31,7 +31,7 @@ def transform_weather_data(raw_data):
 
             try:
                 timestamp = datetime.strptime(record['timestamp'], '%Y-%m-%d %H:%M:%S')
-                transformed_record['timestamp'] = timestamp.isoformat
+                transformed_record['timestamp'] = timestamp.isoformat()
                 transformed_record['date'] = timestamp.strftime('%Y-%m-%d')
             except ValueError:
                 logging.warning(f"Invalid timestamp format for record {record['station_id']}: {record['timestamp']}")
