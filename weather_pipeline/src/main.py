@@ -31,7 +31,7 @@ def process_weather_data(config, date_str=None):
     Main function to process weather data.
     """
     if not date_str:
-        date_str = datetime.now().strftime('%Y-%m-%d')
+        date_str = "2025-01-01"
 
     logging.info(f"Starting weather data processing for {date_str}")
 
