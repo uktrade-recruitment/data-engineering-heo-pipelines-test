@@ -19,7 +19,7 @@ logging.basicConfig(
 def load_config():
     """Purely for loading configuration settings."""
     try:
-        config = configparser.ConfigParser
+        config = configparser.ConfigParser()
         config.read('config/config.ini')
         return config
     except Exception as e:
@@ -66,5 +66,5 @@ def process_weather_data(config, date_str=None):
         return False
 
 if __name__ == "__main__":
-    config = load_config
+    config = load_config()
     process_weather_data(config)
